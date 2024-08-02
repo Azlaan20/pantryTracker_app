@@ -1,17 +1,17 @@
-'use client'
-import { useState, useEffect, useReducer } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
-import { Box, Typography, Button, Modal, TextField, Stack, CircularProgress, IconButton, Snackbar, Alert, Tooltip, ThemeProvider, createTheme, CssBaseline } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
+'use client';
+import { useState, useEffect, useReducer } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Stars } from '@react-three/drei';
+import { Box, Typography, Button, Modal, TextField, Stack, CircularProgress, IconButton, Snackbar, Alert, Tooltip, ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { collection, getDocs, query, doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { firestore } from "@/firebase";
+import { collection, getDocs, query, doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
+import { firestore } from '@/firebase'; // Use relative path to your Firebase config file
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import "@fontsource/roboto"; // Add your custom font
+import '@fontsource/roboto'; // Add your custom font
 
 const style = {
   position: 'absolute',
