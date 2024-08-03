@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,6 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
+const auth = getAuth(app);
 
 // Initialize Firebase Analytics (only in client environment)
 let analytics;
@@ -30,4 +32,4 @@ if (typeof window !== "undefined") {
   });
 }
 
-export { firestore, analytics };
+export { firestore, auth, analytics };
