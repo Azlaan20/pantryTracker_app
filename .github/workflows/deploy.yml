@@ -6,29 +6,21 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.17.0'
-
       - name: Install dependencies
         run: npm install
-
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
 
       - name: Build project
         run: npm run build
 
       - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: vercel --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID --prod --yes
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Configure Environment Variables
+        run: vercel env add ENV_VAR_NAME ${{ secrets.ENV_VAR_NAME }}
