@@ -26,6 +26,14 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Check and remove .vercel directory if it exists
+        run: |
+          while [ -d ".vercel" ]; do
+            echo ".vercel directory found, removing it..."
+            rm -rf .vercel
+            sleep 1 # Sleep for a second before checking again
+          done
+
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
