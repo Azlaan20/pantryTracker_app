@@ -32,5 +32,8 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          echo "Deploying to Vercel..."
-          vercel --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID --prod --yes --project-id $VERCEL_PROJECT_ID
+          if [ -d ".vercel" ]; then
+            echo ".vercel directory found, removing it..."
+            rm -rf .vercel
+          fi
+          vercel deploy --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID --prod --yes --env VERCEL_PROJECT_ID=$VERCEL_PROJECT_ID
