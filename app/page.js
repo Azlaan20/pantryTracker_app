@@ -72,7 +72,7 @@ export default function Home() {
   const [loginMode, setLoginMode] = useState(true); // true for login, false for signup
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const updateInventory = async () => {
     if (!user) return;
     dispatch({ type: 'FETCH_INIT' });
